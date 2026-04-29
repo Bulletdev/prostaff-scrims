@@ -17,6 +17,7 @@ interface OrgForm {
   name: string
   region: string
   public_tagline: string
+  is_public: boolean
 }
 
 interface AccountForm {
@@ -33,6 +34,7 @@ export default function SettingsPage() {
     name: '',
     region: '',
     public_tagline: '',
+    is_public: false,
   })
 
   const [accountForm, setAccountForm] = useState<AccountForm>({
@@ -47,6 +49,7 @@ export default function SettingsPage() {
         name: organization.name ?? '',
         region: organization.region ?? '',
         public_tagline: organization.public_tagline ?? '',
+        is_public: organization.is_public ?? false,
       })
       if (organization.logo_url) setLogoPreview(organization.logo_url)
     }
@@ -116,6 +119,7 @@ export default function SettingsPage() {
       name: form.name,
       region: form.region,
       public_tagline: form.public_tagline || undefined,
+      is_public: form.is_public,
     })
   }
 
@@ -238,6 +242,40 @@ export default function SettingsPage() {
                   className={inputClass}
                 />
                 <p className="text-[11px] text-text-dim">{form.public_tagline.length}/120</p>
+              </div>
+
+              <div className="col-span-2 space-y-2 rounded-sm border border-gold/15 bg-navy-deep/50 p-3">
+                <p className="font-mono text-xs uppercase tracking-widest text-text-muted">
+                  {t('settings.lobby.title')}
+                </p>
+                <div className="flex items-center justify-between gap-4">
+                  <span className="text-sm text-text-primary">{t('settings.lobby.label')}</span>
+                  <button
+                    type="button"
+                    role="switch"
+                    aria-checked={form.is_public}
+                    onClick={() => setForm({ ...form, is_public: !form.is_public })}
+                    className={`relative inline-flex h-5 w-9 flex-shrink-0 cursor-pointer items-center rounded-full border transition-colors focus:outline-none ${
+                      form.is_public
+                        ? 'border-gold/60 bg-gold/20'
+                        : 'border-gold/20 bg-navy'
+                    }`}
+                  >
+                    <span
+                      className={`inline-block h-3 w-3 transform rounded-full transition-transform ${
+                        form.is_public
+                          ? 'translate-x-4 bg-gold'
+                          : 'translate-x-1 bg-text-dim'
+                      }`}
+                    />
+                  </button>
+                </div>
+                <p className="text-[11px] text-text-dim">{t('settings.lobby.hint')}</p>
+                <p className="font-mono text-[10px] tracking-widest">
+                  <span className={form.is_public ? 'text-teal-bright' : 'text-text-dim'}>
+                    {form.is_public ? `[ ${t('settings.lobby.on')} ]` : `[ ${t('settings.lobby.off')} ]`}
+                  </span>
+                </p>
               </div>
 
             </div>

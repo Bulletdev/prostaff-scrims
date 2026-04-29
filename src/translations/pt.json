@@ -468,6 +468,11 @@
   "settings.tier.amateur": "Amador",
   "settings.tier.readOnly": "O tier é gerenciado pela plataforma.",
   "settings.currentTier": "Atual: {{tier}}",
+  "settings.lobby.title": "Visibilidade no Lobby",
+  "settings.lobby.label": "Aparecer no lobby público",
+  "settings.lobby.hint": "Quando ativado, sua organização aparece no lobby público do scrims.lol. Apenas nome, região, tagline e roster são exibidos — nenhum dado interno é exposto.",
+  "settings.lobby.on": "Visível",
+  "settings.lobby.off": "Oculto",
 
   "roster.title": "Roster",
   "roster.subtitle": "Gerencie os jogadores da sua organização",
